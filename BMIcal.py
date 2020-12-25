@@ -30,21 +30,17 @@ class jiji(tk.Frame):
         self.btncomfirm.grid(row = 3, column = 2)
         self.labBMI.grid(row = 1, column = 3, rowspan = 2)
         
-    def setBMI(self, height, weight):
-        height = float(height)
-        weight = float(weight)
-        height *= 0.01
-        height *= height
-        BMI = round(float(weight / height), 2)
-        self.labBMI.configure(text = BMI)
-        
     def clickcomfirm(self):
-        height = self.entheight.get()
-        weight = self.entweight.get()
-        self.setBMI(height, weight)
-
-        self.shouldReset = True
-
+        try:
+            height = float(self.entheight.get())
+            weight = float(self.entweight.get())
+            height *= 0.01
+            height *= height
+            BMI = round(float(weight / height), 2)
+            self.labBMI.configure(text = BMI)
+            self.shouldReset = True
+        except:
+            self.labBMI.configure(text = "請輸入數字")
 
 cal = jiji()
 cal.master.title("My jiji")
