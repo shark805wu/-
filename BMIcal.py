@@ -43,8 +43,16 @@ class jiji(tk.Frame):
         
     def clickcomfirm(self):
         try:
+            age = int(self.entage.get())
             height = float(self.entheight.get())
             weight = float(self.entweight.get())
+
+            bdfat = self.entbdfat.get()
+            bdfat = bdfat.replace("%", "")
+            bdfat = bdfat.replace("％", "")
+            if bdfat != "":
+                bdfat = float(bafat)
+
             height *= 0.01
             height *= height
             BMI = round(float(weight / height), 2)
@@ -52,6 +60,7 @@ class jiji(tk.Frame):
             self.shouldReset = True
         except:
             self.labBMI.configure(text = "請輸入數字")
+            
 
 cal = jiji()
 cal.master.title("My jiji")
