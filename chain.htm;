@@ -1,0 +1,67 @@
+<div class="store_detail2 martop1 marbottom1">
+                <div class="tableTitle ft18">食材資訊</div>
+                <table class="table3" cellspacing="0" cellpadding="0">
+                    <tbody><tr><th>原料名稱</th><th>品牌</th><th>產地(來源或工廠)</th><th>過敏原</th><th>認證標章</th></tr>
+                        <tr>
+                            <td>沙拉油</td>
+                            <td>泰山</td>
+                            <td>新北市</td>
+                            <td>無</td>
+                                <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>肉塊</td>
+                            <td>卜蜂</td>
+                            <td>南投縣</td>
+                            <td>無</td>
+                                <td>-</td>
+                        </tr>
+                    <tr><th colspan="5" id="e" headers="e">備註：過敏原『無』代表無衛生福利部公告「食品過敏原標示規定」所列之品項；不代表無其他致過敏性食材。</th></tr>
+                </tbody></table>
+
+                <div class="tableTitle ft18">營養標示</div>
+                <table class="table3" cellspacing="0" cellpadding="0">
+                    <tbody><tr><th>每一份量(克)</th><th>熱量(卡)</th></tr>
+                    <tr>
+                        <td>170g</td>
+                        <td>280</td>
+                    </tr>
+                </tbody></table>
+
+
+                <div class="tableTitle ft18">包材資訊</div>
+                <table class="table3" cellspacing="0" cellpadding="0">
+                    <tbody><tr><th>名稱</th><th>包材材質</th><th>包材耐熱溫度範圍(° C )</th><th>產地(來源或工廠)</th></tr>
+                        <tr>
+                            <td>防油紙袋</td>
+                            <td>紙類-接觸部分為蠟或紙漿製品</td>
+                            <td>100</td>
+                            <td>新北市</td>
+                        </tr>
+                </tbody></table>
+
+                    <div class="tableTitle ft18" id="tableTitle">檢驗報告</div>
+                    <div class="store">
+                        <div class="store_list">
+                            <ul id="ulCompany">
+                                    <li>
+                                        <a class="pdfview cboxElement" href="/Backend/upload/materielc/22368753/File_22368753_6_2.pdf">
+                                            肉塊
+                                            <img src="/Front/images/report1.jpg" alt="report1">
+                                        </a>
+                                    </li>
+                                                                    <li>
+                                        <a class="pdfview cboxElement" href="/Backend/upload/productc/22368753/File_22368753_2_2.pdf">
+                                            辣味雞塊
+                                            <img src="/Front/images/report1.jpg" alt="report1">
+                                        </a>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <table class="table3" cellspacing="0" cellpadding="0">
+                        <tbody><tr>
+                            <td><h3>檢驗報告係由業者針對產品製程週期或其原料購入頻率進行輪替性自主檢驗，並公布於本網站，相關資料請勿任意轉載用於其他用途。</h3></td>
+                        </tr>
+                    </tbody></table>
+            </div>
