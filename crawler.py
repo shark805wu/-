@@ -39,7 +39,8 @@ breakfast_indi_url = 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDe
 breakfastr = requests.get(breakfast_indi_url, verify=False)
 soup = BeautifulSoup(breakfastr.text, 'html.parser')
 attr = {'class': 'store_detail'}
-print(soup.find('th', string='熱量(大卡)').next_sibling.next_sibling)
+# print(soup.find('th', string='熱量(大卡)').next_sibling.next_sibling)
+print(soup.find('th', string='熱量(大卡)').next_siblings[1])
 # print(soup.a.next_siblings)
 # print(soup.find('div').next_sibling)
 # # print(soup.body.contents)
