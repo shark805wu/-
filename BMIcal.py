@@ -5,16 +5,12 @@ import math
 from PIL import ImageTk
 
 
-class base(tk.Frame):
-    def __init__(self):
-        tk.Frame.__init__(self) 
-        page1()
-
 class page1(tk.Frame):
-    def __init__(self):
+    def __init__(self, BMR):
         tk.Frame.__init__(self) 
         self.grid()
         self.createWidgets()
+        self.BMR = 0
 
 
     def createWidgets(self):
@@ -53,7 +49,7 @@ class page1(tk.Frame):
         self.blank2.grid(row = 6, column = 0)
         
     def clickcomfirm(self):
-        # try:
+        try:
             age = int(self.entage.get())
             height = float(self.entheight.get())
             weight = float(self.entweight.get())
@@ -61,12 +57,21 @@ class page1(tk.Frame):
             height *= 0.01
             height *= height
             BMI = round(float(weight / height), 2)
+            height = float(self.entheight.get())
             if sexual == 0:
                 self.labBMI.configure(text = "請選擇性別")
-            else:
+            elif sexual == 1:
+                self.BMR = round(66 + (13.7 * weight) + (5.0 * height) - (6.8 * age), 2)
                 self.labBMI.configure(text = BMI)
-        # except:
-            # self.labBMI.configure(text = "請輸入數字")
+                print(self.BMR)
+            elif sexual == 2:
+                self.BMR = round(665 + (9.6 * weight) + (1.8 * height) - (4.7 * age), 2)
+                self.labBMI.configure(text = BMI)
+            
+            # 66 + (13.7 × 體重) + (5.0 × 身高) – (6.8 × 年齡)
+            # 655 + (9.6 × 體重) + (1.8 × 身高) – (4.7 × 年齡)
+        except:
+            self.labBMI.configure(text = "請輸入數字")
             
     def clickswitch(self):
         self.destroy()
@@ -79,13 +84,17 @@ class page2(tk.Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        f1 = tkFont.Font(size = 32, family = "Courier New")
+        BMR = cal.BMR
+        f1 = tkFont.Font(size = 16, family = "Courier New")
         f2 = tkFont.Font(size = 16, family = "Courier New")
-        self.labDailyCal = tk.Label(self, text = "基礎代謝率              kcal", height = 1, width = 8, font = f2)
-        self.labDailyCal = tk.Label(self, text = dailycal, height = 1, width = 8, font = f2)
+        f3 = tkFont.Font(size = 16, family = "Courier New")
+        self.labDailyCal = tk.Label(self, text = "基礎代謝率         kcal", height = 1, width = 24, font = f1)
+        self.labCal = tk.Label(self, text = BMR, height = 1, width = 8, font = f2, fg = "green")
+        
+        self.labDailyCal.grid(row = 1, column = 1)
+        self.labCal.grid(row = 1, column = 1)
         
 
-
-cal = base()
+cal = page1(0)
 cal.master.title("ya")
 cal.mainloop()
