@@ -10,13 +10,16 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # '''
 calories_dic = {}
-with open('brand.csv', newline='') as csvfile:
+with open('finalcsv.csv', newline='') as csvfile:
     csv = csv.reader(csvfile, delimiter=',')
     count = 0
     for row in csv:
+        count += 1
+        if count < 14:
+            continue
         print(row[0])
         time.sleep(3)
-        if count == 12:
+        if count == 91:
             break
         store_name = row[0]
         store_url = row[1]
@@ -74,26 +77,5 @@ with open('brand.csv', newline='') as csvfile:
                         print(calories_dic[store_name][product_name_two], calories_dic[store_name][product_name_one])
             except:
                 print(product_url, product_url)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(calories_dic)
 # '''
