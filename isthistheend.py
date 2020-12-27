@@ -41,11 +41,13 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
             try:
                 store_name = product_soup.find('div', class_='storeName').text
             except:
-                print(product_url)
+                pass
             if store_name not in calories_dic:
                 calories_dic[store_name] = {}
-            product_name = product_soup.find('div', class_='crack').a.next_sibling.strip('\n \r/') # 品名
-
+            try:
+                product_name = product_soup.find('div', class_='crack').a.next_sibling.strip('\n \r/') # 品名
+            except:
+                pass
             if count < 13: # 速食
                 try:
                     product_calories = product_soup.find('th', string=re.compile('熱量')).parent.parent.contents[3].contents[3].text
