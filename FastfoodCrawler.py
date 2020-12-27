@@ -34,7 +34,6 @@ with open('brand.csv', newline='') as csvfile:
             for product_tag in sub_soup.find_all('div', class_='product'):
                 product_url_list.append(product_tag.a['href'])
 
-        # 以下大類別不同（速食/冰...）要改
         for product_url in product_url_list:
             try:
                 product_url = 'https://foodtracer.taipei.gov.tw' + product_url
