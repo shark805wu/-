@@ -49,16 +49,3 @@ with open('brand.csv', newline='') as csvfile:
         count += 1
 print(calories_dic)
 # '''
-
-# '''
-# 測試區
-print('test')
-url = 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=9509&pt=%e8%9b%8b%e9%a4%85'
-r = requests.get(url, verify=False)
-soup = BeautifulSoup(r.text, 'html.parser')
-print(soup.find('div', class_='crack').a.next_sibling.strip('\n \r /'))
-# for i in range(10):
-print(soup.find('th', string='熱量(大卡)').parent.contents[2].text)
-print('test')
-# 測試區
-# '''
