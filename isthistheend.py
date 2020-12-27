@@ -15,8 +15,6 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
     count = 0
     for row in csv:
         count += 1
-        if count < 91:
-            continue
         if count in skip:
             continue
         # store_name = roe[0]
@@ -53,7 +51,7 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
                     product_calories = product_soup.find('th', string=re.compile('熱量')).parent.parent.contents[3].contents[3].text
                     calories_dic[store_name][product_name] = float(product_calories)
                 except:
-                    print(product_name)
+                    pass
 
             if 13 < count < 91: # 飲冰品
                 try:
@@ -98,12 +96,12 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
                         product_calories = product_soup.find(string=re.compile('熱量')).parent.next_sibling.next_sibling.text
                         calories_dic[store_name][product_name] = float(product_calories.strip("kcal大卡 "))
                     except:
-                        print(product_name)
+                        pass
             if 110 < count:
                 try:
                     product_calories = product_soup.find('th', string=re.compile('熱量')).next_sibling.next_sibling.text
                     calories_dic[store_name][product_name] = float(product_calories.strip(strip))
                 except:
-                    print(product_url, store_name)
+                    pass
 
 print(calories_dic)          
