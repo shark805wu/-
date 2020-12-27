@@ -10,7 +10,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # '''
 calories_dic = {}
-with open('finalcsv.csv', newline='') as csvfile:
+with open('finalcsv.csv', newline='',encoding='utf-8') as csvfile:
     csv = csv.reader(csvfile, delimiter=',')
     count = 0
     for row in csv:

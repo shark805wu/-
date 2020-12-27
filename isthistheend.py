@@ -8,14 +8,17 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 calories_dic = {}
 skip = [13,91,110]
+skip_list = ['https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=1677&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=1725&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=10069&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=10070&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=19866&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=10109&pt=%e9%9b%80%e5%b7%a2%e9%a3%b2%e5%93%81']
+strip = 'kcal大卡約 '
 with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
     csv = csv.reader(csvfile, delimiter=',')
     count = 0
     for row in csv:
         count += 1
+        if count < 91:
+            continue
         if count in skip:
             continue
-        time.sleep(2)
         # store_name = roe[0]
         store_url = row[1]
         product_url_list = []
@@ -33,6 +36,8 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
 
         for product_url in product_url_list:
             product_url = 'https://foodtracer.taipei.gov.tw' + product_url
+            if product_url in skip_list:
+                continue
             product_r = requests.get(product_url, verify=False)
             product_soup = BeautifulSoup(product_r.text, 'html.parser')
             try:
@@ -87,23 +92,18 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
             if 91 < count < 110:
                 try:
                     product_calories = product_soup.find('th',  string=re.compile('熱量')).next_sibling.next_sibling.text
-                    calores_dic[store_name][product_name] = float(product_calories.strip("kcal大卡 "))
+                    calories_dic[store_name][product_name] = float(product_calories.strip("kcal大卡 "))
                 except:
-                    print(product_url, product_name)
-
+                    try:
+                        product_calories = product_soup.find(string=re.compile('熱量')).parent.next_sibling.next_sibling.text
+                        calories_dic[store_name][product_name] = float(product_calories.strip("kcal大卡 "))
+                    except:
+                        print(product_name)
             if 110 < count:
                 try:
                     product_calories = product_soup.find('th', string=re.compile('熱量')).next_sibling.next_sibling.text
                     calories_dic[store_name][product_name] = float(product_calories.strip(strip))
                 except:
-                    print(product_url)
+                    print(product_url, store_name)
 
 print(calories_dic)          
-
-'''
-# 輸出成csv
-with open("final.csv", "wb") as final_file:
-    w = csv.writer( f )
-    years = dw.values()[0].keys()
-    for key in dw.keys():
-        w.writerow([key] + [dw[key][year] for year in years])
