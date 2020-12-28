@@ -10,7 +10,9 @@ calories_dic = {}
 skip = [13,91,110]
 skip_list = ['https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=1677&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=1725&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=10069&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=10070&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=19866&pt=%e5%a4%aa%e5%8f%a4%e9%a3%b2%e5%93%81', 'https://foodtracer.taipei.gov.tw/Front/Breakfast/ProductDetail?id=10109&pt=%e9%9b%80%e5%b7%a2%e9%a3%b2%e5%93%81']
 strip = 'kcal大卡約 '
-with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
+
+
+with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile: # 打開裝有餐廳網址的csv檔
     csv = csv.reader(csvfile, delimiter=',')
     count = 0
     for row in csv:
@@ -89,7 +91,7 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
                     pass
                     # print(product_calories)
 
-            if 91 < count < 110:
+            if 91 < count < 110: # 早餐
                 try:
                     product_calories = product_soup.find('th',  string=re.compile('熱量')).next_sibling.next_sibling.text
                     calories_dic[store_name][product_name] = float(product_calories.strip("kcal大卡 "))
@@ -99,7 +101,7 @@ with open('finalcsv.csv', newline='', encoding='utf-8') as csvfile:
                         calories_dic[store_name][product_name] = float(product_calories.strip("kcal大卡 "))
                     except:
                         pass
-            if 110 < count:
+            if 110 < count: # 拉麵
                 try:
                     product_calories = product_soup.find('th', string=re.compile('熱量')).next_sibling.next_sibling.text
                     calories_dic[store_name][product_name] = float(product_calories.strip(strip))
